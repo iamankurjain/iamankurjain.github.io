@@ -6,7 +6,7 @@ categories: [iOS, Performance]
 tags: [threads, iOS, concurrency, kernel, NSThread]
 ---
 
-![Blog Header](../assets/img/posts/2025-08-03-cost-of-threads/cost_of_threads.png)
+![Blog Header](/assets/img/posts/2025-08-03-cost-of-threads/cost_of_threads.png)
 
 ## The Cost of Threads
 Often an iOS app would be running multiple threads in a process. Sometimes these threads are used to do some local computations or downloading content from the internet. We often create a background thread whenever we are doing any computation or downloading task which can be run in the background. But we often ignore the cost of creating threads.
