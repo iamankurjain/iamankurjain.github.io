@@ -3,7 +3,7 @@ email: email@ankurjain.pro
 description: >- 
   Senior Mobile Consultant | iOS & Flutter Expert
 
-baseurl: "" # leave this blank for user.github.io site
+baseurl: ""
 url: "https://iamankurjain.github.io"
 
 theme: minima
@@ -12,14 +12,14 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-# Navigation menu
+future: true
+
 minima:
   social_links:
     github: iamankurjain
     linkedin: ankurjain-dev
     email: email@ankurjain.pro
 
-  # Optional: define your navigation links
   navigation:
     - title: Home
       url: /
@@ -27,5 +27,3 @@ minima:
       url: /blog/
     - title: About
       url: /about/
-
-#Comment
