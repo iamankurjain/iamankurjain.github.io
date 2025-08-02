@@ -1,5 +1,29 @@
+title: Ankur Jain
+email: your.email@example.com
+description: >- 
+  Senior Mobile Consultant | iOS & Flutter Expert
+
+baseurl: "" # leave this blank for user.github.io site
+url: "https://iamankurjain.github.io"
+
 theme: minima
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
+# Navigation menu
+minima:
+  social_links:
+    github: iamankurjain
+    linkedin: ankurjain-dev
+    email: email@ankurjain.pro
+
+  # Optional: define your navigation links
+  navigation:
+    - title: Home
+      url: /
+    - title: Blog
+      url: /blog/
+    - title: About
+      url: /about/
