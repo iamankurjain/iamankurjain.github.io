@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Property Wrappers in Swift</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Property Wrappers in Swift</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Properties in Swift are used to hold some kind of data. Sometimes properties have some kind of logic to be triggered when they’re modified…
+</section>
+<section data-field="body" class="e-content">
+<section name="1ea2" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7198" id="7198" class="graf graf--h3 graf--leading graf--title">Property Wrappers in Swift</h3><p name="bfef" id="bfef" class="graf graf--p graf-after--h3">Properties in <strong class="markup--strong markup--p-strong">Swift</strong> are used to hold some kind of data. Sometimes these properties have some kind of logic to be triggered when they’re modified. For Example - having a property which maintains the state of the cache, when it’s changed, the application needs to update the values to <strong class="markup--strong markup--p-strong">UserDefaults</strong>. Something like this -</p><figure name="9b57" id="9b57" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*E88_-eQFyknq0ySEfa13PQ.png" data-width="1830" data-height="1310" src="https://cdn-images-1.medium.com/max/800/1*E88_-eQFyknq0ySEfa13PQ.png"></figure><p name="7b3f" id="7b3f" class="graf graf--p graf-after--figure">In this example, when <strong class="markup--strong markup--p-strong">isCacheUpdated</strong> and <strong class="markup--strong markup--p-strong">isUserDetailsUpdated</strong> are modified, it needs to save the values to UserDefaults to maintain the state of the cache. If you notice, the logic for updating the userDefaults is repetitive and not generic. So if we were to maintain some more states, we have to write more number of lines of code.</p><p name="9d04" id="9d04" class="graf graf--p graf-after--p">Same is the case with userData and accountData, when the data is updated, it needs to encrypt before saving it to database. How can we solve this problem where we can reuse this logic and make it more generic? And easy to use too 😃</p><p name="d419" id="d419" class="graf graf--p graf-after--p">The answer is Property Wrappers in <strong class="markup--strong markup--p-strong">Swift 5.1</strong>. Let’s see how it works and solves our problem.</p><h3 name="8d83" id="8d83" class="graf graf--h3 graf-after--p">Property Wrappers</h3><p name="f676" id="f676" class="graf graf--p graf-after--h3">Property wrappers are types which wraps a given value and attach associated logic to it. It can be implemented using either <strong class="markup--strong markup--p-strong">Struct</strong> or <strong class="markup--strong markup--p-strong">Class</strong> by annotating it with the <strong class="markup--strong markup--p-strong">@propertyWrapper</strong> attribute. The only real requirement is that each property wrapper type should contain a stored property called wrappedValue, which tells Swift which underlying value that’s being wrapped.</p><p name="94a3" id="94a3" class="graf graf--p graf-after--p">Let’s take the above example and see how we can use Property wrappers for <strong class="markup--strong markup--p-strong">isCacheUpdated</strong> and <strong class="markup--strong markup--p-strong">isUserDetailsUpdated -</strong></p><figure name="9d36" id="9d36" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*umG0Y34N5wQukwyZlAZ7cA.png" data-width="1808" data-height="742" src="https://cdn-images-1.medium.com/max/800/1*umG0Y34N5wQukwyZlAZ7cA.png"></figure><p name="b54f" id="b54f" class="graf graf--p graf-after--figure">In this example, we’ve created a property wrapper <strong class="markup--strong markup--p-strong">UserDefaultsBacked</strong> which wraps values which needs to be stored to UserDefaults. This struct is annotated with <strong class="markup--strong markup--p-strong">@propertyWrapper </strong>and wraps values of type <strong class="markup--strong markup--p-strong">DataType (Generic)</strong></p><p name="5e6e" id="5e6e" class="graf graf--p graf-after--p">Property Wrappers can also have their own set of properties to hold some values. Here, we’ve a initialiser which takes key as a parameter to point to the correct data in userDefaults.</p><p name="6824" id="6824" class="graf graf--p graf-after--p">Now see how easy it is to use it in the code-</p><figure name="ef05" id="ef05" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*S-wGIv3QM3mE08KFMxXX3Q.png" data-width="1928" data-height="406" src="https://cdn-images-1.medium.com/max/800/1*S-wGIv3QM3mE08KFMxXX3Q.png"></figure><p name="27bc" id="27bc" class="graf graf--p graf-after--figure">it’s that simple 😀 Just declare the variable with annotation and we can save significant amount code and make it more generic.</p><p name="67d0" id="67d0" class="graf graf--p graf-after--p">See the code below to implement Property Wrappers to wrap <strong class="markup--strong markup--p-strong">userData</strong> and <strong class="markup--strong markup--p-strong">accountData -</strong></p><figure name="bd0a" id="bd0a" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*mFfU6yPwf9lOdWWmLbrHsA.png" data-width="1194" data-height="492" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*mFfU6yPwf9lOdWWmLbrHsA.png"></figure><p name="26b1" id="26b1" class="graf graf--p graf-after--figure">Here we create a property wrapper SecureData and implement the required property <strong class="markup--strong markup--p-strong">wrappedValue. </strong>See how we use this -</p><figure name="2c68" id="2c68" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*lluJHpY_Cl50-ddu_FGL9g.png" data-width="1740" data-height="358" src="https://cdn-images-1.medium.com/max/800/1*lluJHpY_Cl50-ddu_FGL9g.png"></figure><p name="f01a" id="f01a" class="graf graf--p graf-after--figure">Just declare <strong class="markup--strong markup--p-strong">userData</strong> and <strong class="markup--strong markup--p-strong">accountData</strong> with <strong class="markup--strong markup--p-strong">@SecureData </strong>annotation and everything is set up. Swift automatically understands that userData and accountData are wrapped by property wrapper SecureData and it applies associated logic whenever these values are modified.</p><p name="3278" id="3278" class="graf graf--p graf-after--p">We’ve seen, property wrappers are easy to use types and saves significant amount of code and provide more generic solutions. It seems exciting to me but let me know what do you think about it.</p><p name="4fd1" id="4fd1" class="graf graf--p graf-after--p graf--trailing">Thanks for Reading 😀</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@iamankurjain" class="p-author h-card">Ankur JAIN</a> on <a href="https://medium.com/p/2a1355bbf171"><time class="dt-published" datetime="2020-08-18T19:28:52.241Z">August 18, 2020</time></a>.</p><p><a href="https://medium.com/@iamankurjain/property-wrappers-in-swift-2a1355bbf171" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on August 2, 2025.</p></footer></article></body></html>
