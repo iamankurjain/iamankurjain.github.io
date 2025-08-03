@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Memory Management in iOS"
+date: 2018-09-13
+categories: [iOS, swift]
+tags: [programming, swift, iOS, concurrency]
+---
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Memory Management in iOS</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Memory Management in iOS</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Audience
+</section>
+<section data-field="body" class="e-content">
+<section name="daea" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h2 name="1366" id="1366" class="graf graf--h2 graf--leading graf--title">Memory Management in iOS</h2><figure name="9811" id="9811" class="graf graf--figure graf-after--h2"><img class="graf-image" data-image-id="1*bsvB6cCcBG8VWwaUJjUI2g.png" data-width="1118" data-height="372" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*bsvB6cCcBG8VWwaUJjUI2g.png"></figure><h2 name="a007" id="a007" class="graf graf--h2 graf-after--figure">Audience</h2><p name="5cdf" id="5cdf" class="graf graf--p graf-after--h2">This post is for those who are having little to zero knowledge in memory management. Most people skip the deep basics of this topic as it’s sometimes complicated. But, memory management is quite important to understand as it is the thing which enables and handles all the allocations, initializations of Objective C Objects, Swift Objects. So, if you want to learn and practice memory management with real examples, this post will help you in getting the best.</p><h2 name="effe" id="effe" class="graf graf--h2 graf-after--p">What is Memory Management?</h2><p name="fec4" id="fec4" class="graf graf--p graf-after--h2">Memory management is all about managing and handling all the allocations, your app creates during its lifetime. In any platform, the operating system handles the memory management for the application. In Java, JVM and garbage collector takes the ownership of removing and reclaiming the memory for the objects, the application wants to create. Just like that, we have Automatic Reference Counting in iOS. It handles all the allocations the app creates, destroying all the objects which are not in use or will not be used throughout the lifetime of the app.</p><p name="384c" id="384c" class="graf graf--p graf-after--p">All the objects will be created on the RAM based on the available space it has. Operating system gets the instruction from the app to allocate memory for the object, it creates it and sends back the address of the memory, which you use to create a reference and change the values when required.</p><h2 name="8eb4" id="8eb4" class="graf graf--h2 graf-after--p">How is memory allocated?</h2><p name="f47b" id="f47b" class="graf graf--p graf-after--h2">Look at this statement:</p><figure name="eb58" id="eb58" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="0*vvpPLQFny_5ksrcl" data-width="1814" data-height="321" src="https://cdn-images-1.medium.com/max/800/0*vvpPLQFny_5ksrcl"></figure><p name="8793" id="8793" class="graf graf--p graf-after--figure">In the first line, the app creates a memory in RAM to hold the string value and tempString now owns this memory. If you try to print tempString it instead of printing the address it prints the content in the memory it is referencing. This is the way Objective C and Swift variable works which is quite opposite of C pointers. If we have to print the address then we have to first take the unsafePointer to that type and then we can have the address pointer to that location.</p><h2 name="a796" id="a796" class="graf graf--h2 graf-after--p">How is Memory Management in iOS handled?</h2><p name="d12d" id="d12d" class="graf graf--p graf-after--h2">Initially, Memory management in iOS used to be handled using non-ARC, where we used to retain and release objects manually throughout its whole lifecycle. Now, it supports ARC and we don’t have to retain and release the objects manually. Let’s understand the ARC first.</p><h2 name="de63" id="de63" class="graf graf--h2 graf-after--p"><strong class="markup--strong markup--h2-strong">Automatic</strong> Reference Counting(ARC)</h2><p name="3594" id="3594" class="graf graf--p graf-after--h2">Just like JVM in Java, iOS has ARC to handle its memory management. It’s actually better than JVM in some areas, that’s why it is considered to be the best in the market. ARC works on reference counts on objects, It releases the objects from the memory if the object is having reference count to 0. Now you might be wondering how this reference count works. No problem. You will get your doubts cleared in the next example.</p><pre name="89ff" id="89ff" class="graf graf--pre graf-after--p">class Person{     <br>var name: String!  <br>    <br>init(name: String) {<br> self.name = name <br>} </pre><pre name="5907" id="5907" class="graf graf--pre graf-after--pre">deinit{ <br>print(&quot;Person with Name \(name) is being deinitialized&quot; }<br> }</pre><p name="07ca" id="07ca" class="graf graf--p graf-after--pre">We have created Person Class with name property, an initializer with name and a deinitializer.</p><pre name="f169" id="f169" class="graf graf--pre graf-after--p">var person1: Person? = Person(name: &quot;Jacky&quot;)</pre><p name="6567" id="6567" class="graf graf--p graf-after--pre">Here we created a Person object with the initializer. Now person object is created somewhere in the memory, your app doesn’t know it yet and can not access it. To get the access of the object it just created, we actually assign the strong reference back to the person1 variable. Now this person object in memory has reference count to 1.</p><figure name="2cb3" id="2cb3" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="0*KvTvZh8c6Ng3O4Eg.png" data-width="722" data-height="322" src="https://cdn-images-1.medium.com/max/800/0*KvTvZh8c6Ng3O4Eg.png"></figure><p name="5387" id="5387" class="graf graf--p graf-after--figure">Look at another example…</p><pre name="1c6f" id="1c6f" class="graf graf--pre graf-after--p">var person1: Person? = Person(name: &quot;Jacky&quot;)<br>let person2 = person1</pre><p name="fce8" id="fce8" class="graf graf--p graf-after--pre">Now in this example first line create one reference to the person with the name Jacky. In the second line we are passing a reference to another variable which makes the reference count 2 on the person object.</p><figure name="94e2" id="94e2" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="0*lBMB_mZoAn5tvz8p.png" data-width="708" data-height="416" src="https://cdn-images-1.medium.com/max/800/0*lBMB_mZoAn5tvz8p.png"></figure><p name="ab84" id="ab84" class="graf graf--p graf-after--figure">So even if you say</p><pre name="e79d" id="e79d" class="graf graf--pre graf-after--p">person1 = nil .<br>print(&quot;Person2 is \(person2.name!)&quot;) .</pre><figure name="4249" id="4249" class="graf graf--figure graf-after--pre"><img class="graf-image" data-image-id="0*XxyKBTgrAGSpzuME.png" data-width="712" data-height="388" src="https://cdn-images-1.medium.com/max/800/0*XxyKBTgrAGSpzuME.png"></figure><p name="1e6f" id="1e6f" class="graf graf--p graf-after--figure">when person1 gets nil, it decreases the reference count on the object which makes the total count to 1. As person2 is still having a strong reference to the person object, the object can’t be destroyed until person2 also releases it.</p><h4 name="f0d9" id="f0d9" class="graf graf--h4 graf-after--p">Note: By Default, the reference type is always strong for a property</h4><p name="059e" id="059e" class="graf graf--p graf-after--h4"><strong class="markup--strong markup--p-strong">Only One Rule — An instance from the memory gets purged out if the reference count on the object is zero or no variable is owning this instance.</strong></p><h2 name="14eb" id="14eb" class="graf graf--h2 graf-after--p">Reference Types</h2><h3 name="8b95" id="8b95" class="graf graf--h3 graf-after--h2">Weak</h3><p name="5c38" id="5c38" class="graf graf--p graf-after--h3">Before understanding Strong reference types, let&#39;s understand the weak first.</p><p name="4f2e" id="4f2e" class="graf graf--p graf-after--p">As the name suggests, a weak reference maintains a weak reference to the instance in the memory. It does not increase the reference(retain) count on the instance hence does not own the object. if all other strong references on the instance have been released, then the instance gets destroyed from the memory. In that case, this weak reference points to the instance which is already destroyed from memory and so nil value will be assigned to the variable, that’s why the compiler does not allow us to create a weak reference with let constant as it might change it’s value to nil in no instance case.</p><figure name="12ba" id="12ba" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="0*ataDRbCa8h28FqBt.png" data-width="1152" data-height="1538" src="https://cdn-images-1.medium.com/max/800/0*ataDRbCa8h28FqBt.png"></figure><figure name="b388" id="b388" class="graf graf--figure graf-after--figure"><img class="graf-image" data-image-id="0*62YxlKsCpwEeeSqz.png" data-width="1284" data-height="458" src="https://cdn-images-1.medium.com/max/800/0*62YxlKsCpwEeeSqz.png"></figure><h3 name="d1a7" id="d1a7" class="graf graf--h3 graf-after--figure">Strong</h3><p name="ffcd" id="ffcd" class="graf graf--p graf-after--h3">A strong reference increases the reference count on the object and owns it. The object can not be destroyed from the memory until the variable releases it’s ownership.</p><pre name="c8db" id="c8db" class="graf graf--pre graf-after--p">cityObj = nil</pre><figure name="a9df" id="a9df" class="graf graf--figure graf-after--pre"><img class="graf-image" data-image-id="0*BDtDE9vmsZRtsxBk.png" data-width="1080" data-height="318" src="https://cdn-images-1.medium.com/max/800/0*BDtDE9vmsZRtsxBk.png"></figure><p name="c7d0" id="c7d0" class="graf graf--p graf-after--figure">After releasing the ownership by citiObj, reference count on City object gets to 0 which makes it eligible to be cleared by ARC from the memory</p><h3 name="82d4" id="82d4" class="graf graf--h3 graf-after--p">Unowned</h3><p name="6650" id="6650" class="graf graf--p graf-after--h3">An unowned reference is similar to weak reference in a way that it doesn’t increase the reference count on the object. Unlike weak references, unowned references don’t have to be optional as it doesn’t get to nil automatically after deallocation. So use unowned references when you are sure that the object will not be destroyed throughout the variable lifetime. If we try to access the object which is already been destroyed from the memory then the programme crashes as it doesn’t have any value, not even nil.</p><h3 name="7a35" id="7a35" class="graf graf--h3 graf-after--p">Weak Vs Unowned</h3><p name="dc19" id="dc19" class="graf graf--p graf-after--h3">See what Apple says about it</p><blockquote name="daba" id="daba" class="graf graf--blockquote graf-after--p"><em class="markup--em markup--blockquote-em">Use a weak reference whenever it is valid for that reference to become nil at some point during its lifetime. Conversely, use an unowned reference when you know that the reference will never be nil once it has been set during initialisation:</em></blockquote><blockquote name="4a05" id="4a05" class="graf graf--blockquote graf-after--blockquote"><strong class="markup--strong markup--blockquote-strong"><em class="markup--em markup--blockquote-em">Source </em></strong><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html" data-href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html" class="markup--anchor markup--blockquote-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--blockquote-strong"><em class="markup--em markup--blockquote-em">Apple Documentation</em></strong></a></blockquote><h2 name="05ab" id="05ab" class="graf graf--h2 graf-after--blockquote">Summary</h2><p name="059d" id="059d" class="graf graf--p graf-after--h2">That’s it. I am sure we now have a basic understanding of how these allocations and deallocations work in iOS. We now have a basic idea where to use Strong, Weak, Unowned references based on the programme requirement.</p><p name="b86d" id="b86d" class="graf graf--p graf-after--p graf--trailing"><strong class="markup--strong markup--p-strong">Source. </strong><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html" data-href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">Apple Documentation</strong></a></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@iamankurjain" class="p-author h-card">Ankur JAIN</a> on <a href="https://medium.com/p/8a27df2e8472"><time class="dt-published" datetime="2018-09-13T06:39:04.098Z">September 13, 2018</time></a>.</p><p><a href="https://medium.com/@iamankurjain/audience-8a27df2e8472" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on August 2, 2025.</p></footer></article></body></html>

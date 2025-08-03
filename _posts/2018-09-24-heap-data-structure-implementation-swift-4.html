@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Heap Data Structure Implementation — Swift 4"
+date: 2018-09-24
+categories: [iOS, swift]
+tags: [programming, swift, iOS]
+---
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Heap Data Structure Implementation — Swift 4</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Heap Data Structure Implementation — Swift 4</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Motive
+</section>
+<section data-field="body" class="e-content">
+<section name="c8ef" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="a60e" id="a60e" class="graf graf--h3 graf--leading graf--title">Heap Data Structure Implementation — Swift 4</h3><h3 name="8a45" id="8a45" class="graf graf--h3 graf-after--h3">Motive</h3><p name="7fa6" id="7fa6" class="graf graf--p graf-after--h3">This post is aiming to help you understand the heap data structure and implement it in Swift. Prior knowledge of swift and heap are a must before we get into the implementation part.</p><h3 name="fa3c" id="fa3c" class="graf graf--h3 graf-after--p">What’s is Heap</h3><p name="fcc8" id="fcc8" class="graf graf--p graf-after--h3">Heap is a special type of complete binary tree where it’s parent is compared with its child nodes to give you the maximum or minimum value in the data structure.</p><p name="ffa3" id="ffa3" class="graf graf--p graf-after--p">There are two types in general.</p><figure name="f9ec" id="f9ec" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*jc5LApK4_8jcJVUePZKVlQ.png" data-width="1062" data-height="540" src="https://cdn-images-1.medium.com/max/800/1*jc5LApK4_8jcJVUePZKVlQ.png"></figure><ol class="postList"><li name="f281" id="f281" class="graf graf--li graf-after--figure"><strong class="markup--strong markup--li-strong">Max Heap: </strong>In Max-Heap, the parent node will always be greater than it’s child nodes. All the other nodes can be in any order</li><li name="3e62" id="3e62" class="graf graf--li graf-after--li"><strong class="markup--strong markup--li-strong">Min Heap: </strong>In Min-Heap, the parent node will always be smaller than it’s child nodes. All the other nodes can be in any order<br>.</li></ol><figure name="d977" id="d977" class="graf graf--figure graf-after--li"><img class="graf-image" data-image-id="1*83Tl5w-Xz51XVDfyZIG6oQ.jpeg" data-width="530" data-height="271" src="https://cdn-images-1.medium.com/max/800/1*83Tl5w-Xz51XVDfyZIG6oQ.jpeg"></figure><blockquote name="15f3" id="15f3" class="graf graf--blockquote graf-after--figure"><strong class="markup--strong markup--blockquote-strong">Note: <em class="markup--em markup--blockquote-em">Heap data structure is useful when you only care about minimum or maximum value. All the other values will be unordered and unsorted.</em></strong></blockquote><p name="57dd" id="57dd" class="graf graf--p graf-after--blockquote">Priority queues are the typical example where heap data structure can be used.</p><h3 name="c79b" id="c79b" class="graf graf--h3 graf-after--p">Implementation</h3><p name="2747" id="2747" class="graf graf--p graf-after--h3">For now, We will implement the minimum heap with all the functionalities. Implementation requires these following steps:</p><p name="cfd4" id="cfd4" class="graf graf--p graf-after--p">1. Adding a value to the heap</p><p name="12a0" id="12a0" class="graf graf--p graf-after--p">2. Removing the minimum element from the heap</p><p name="12eb" id="12eb" class="graf graf--p graf-after--p">3. Getting the minimum element from the heap</p><p name="3650" id="3650" class="graf graf--p graf-after--p">Let’s do this.</p><h4 name="dc2d" id="dc2d" class="graf graf--h4 graf-after--p">Creating Heap Class</h4><figure name="9e9d" id="9e9d" class="graf graf--figure graf-after--h4"><img class="graf-image" data-image-id="1*ttN9WE9AjmzI02iCAf-6rQ.png" data-width="724" data-height="164" src="https://cdn-images-1.medium.com/max/800/1*ttN9WE9AjmzI02iCAf-6rQ.png"></figure><p name="52dc" id="52dc" class="graf graf--p graf-after--figure">Heaps can be represented by an array. A parent node can have a left and a right child. We can get the index of the right Child and left a child in the following way</p><p name="29c9" id="29c9" class="graf graf--p graf-after--p">Left Child Index = 2*parentIndex+ 1</p><p name="88f3" id="88f3" class="graf graf--p graf-after--p">Right Child Index = 2*parentIndex+2</p><p name="40d9" id="40d9" class="graf graf--p graf-after--p">In the same way, <br>ParentIndex = ( childIndex-1)/2</p><h4 name="59f5" id="59f5" class="graf graf--h4 graf-after--p">Implement Required Method in Heap Class</h4><p name="a65c" id="a65c" class="graf graf--p graf-after--h4">Add these methods in the heap class.</p><figure name="f1d2" id="f1d2" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*Qgrnqn_kbCCyVIhNu9EOgA.png" data-width="2608" data-height="1420" src="https://cdn-images-1.medium.com/max/800/1*Qgrnqn_kbCCyVIhNu9EOgA.png"></figure><p name="d2ab" id="d2ab" class="graf graf--p graf-after--figure">Now we will add methods for doing custom operations on Heap.</p><p name="1eb5" id="1eb5" class="graf graf--p graf-after--p">Add these methods</p><figure name="29de" id="29de" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*COr5CeKnDpmGORIxhdCGYA.png" data-width="2476" data-height="1512" src="https://cdn-images-1.medium.com/max/800/1*COr5CeKnDpmGORIxhdCGYA.png"></figure><p name="6fcb" id="6fcb" class="graf graf--p graf-after--figure">peek() returns the minimum element in the heap</p><p name="5dce" id="5dce" class="graf graf--p graf-after--p">poll() is the same like peek but it removes the minimum element as well</p><p name="5d24" id="5d24" class="graf graf--p graf-after--p">add() adds the element into the heap</p><p name="6c14" id="6c14" class="graf graf--p graf-after--p">removeMin() removes the minimum element in the heap</p><p name="16ec" id="16ec" class="graf graf--p graf-after--p">Now you must be wondering, what is heapifyDown() and heapifyUp()</p><p name="aa6b" id="aa6b" class="graf graf--p graf-after--p">Let’s implement them</p><figure name="d91f" id="d91f" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*jFZuV8Bmel_uqAkEUhzsvA.png" data-width="2570" data-height="1464" src="https://cdn-images-1.medium.com/max/800/1*jFZuV8Bmel_uqAkEUhzsvA.png"></figure><h4 name="302f" id="302f" class="graf graf--h4 graf-after--figure">HeapifyUp</h4><p name="2f9f" id="2f9f" class="graf graf--p graf-after--h4">It is the process which occurs after adding the element to the list. So if you want to add the element in the heap, you just add it to the last then you start comparing with the parent until the heap satisfies the condition</p><h4 name="4590" id="4590" class="graf graf--h4 graf-after--p">HeapifyDown</h4><p name="4414" id="4414" class="graf graf--p graf-after--h4">It is the process which occurs when you delete the minimum element in the list and heap has to rearrange itself to satisfy the conditions. For the parent node, it checks if the child node is smaller then the parent if yes, then swap the value. It continues until the heap satisfies its preconditions.</p><p name="a27e" id="a27e" class="graf graf--p graf-after--p">Let’s add the printMethod to print the heap</p><figure name="f2e8" id="f2e8" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*IE5WkcRh20BUBh8cSekbZg.png" data-width="914" data-height="152" src="https://cdn-images-1.medium.com/max/800/1*IE5WkcRh20BUBh8cSekbZg.png"></figure><p name="3371" id="3371" class="graf graf--p graf-after--figure">Let’s use these methods to play with the heap.</p><figure name="6bad" id="6bad" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*Iry3eYMA82nU544TaoB6QA.png" data-width="1156" data-height="1178" src="https://cdn-images-1.medium.com/max/800/1*Iry3eYMA82nU544TaoB6QA.png"></figure><p name="7c87" id="7c87" class="graf graf--p graf-after--figure">As you can see we added the elements in the heap in a random way. But when you print the heap at any time, it always prints the minimum value first.</p><p name="3419" id="3419" class="graf graf--p graf-after--p">See how it works with removal</p><figure name="6da8" id="6da8" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*1mqu7VHD00x3nGPpDsQbWA.png" data-width="1662" data-height="1732" src="https://cdn-images-1.medium.com/max/800/1*1mqu7VHD00x3nGPpDsQbWA.png"></figure><p name="c8ea" id="c8ea" class="graf graf--p graf-after--figure">That’s all the basic operations you can do with the heap. You can implement priority queues with the help of heaps. I would encourage you to implement it as it’s all fun.</p><h3 name="cd54" id="cd54" class="graf graf--h3 graf-after--p">Conclusion</h3><p name="7aee" id="7aee" class="graf graf--p graf-after--h3 graf--trailing">So That’s it for this post. We have learned the basics of heap implementation in Swift. You can do much more with it, like priority queues.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@iamankurjain" class="p-author h-card">Ankur JAIN</a> on <a href="https://medium.com/p/5ef1e9747ef5"><time class="dt-published" datetime="2018-09-24T10:20:05.648Z">September 24, 2018</time></a>.</p><p><a href="https://medium.com/@iamankurjain/heap-data-structure-implementation-swift-4-5ef1e9747ef5" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on August 2, 2025.</p></footer></article></body></html>

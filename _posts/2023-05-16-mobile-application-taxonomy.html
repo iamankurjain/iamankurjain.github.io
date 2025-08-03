@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Mobile Application Taxonomy"
+date: 2023-05-16
+categories: [iOS, swift]
+tags: [programming, swift, iOS, appdevelopment]
+---
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Mobile Application Taxonomy</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Mobile Application Taxonomy</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+This article discusses the definition of mobile applications or apps, which are computer programs designed to run on mobile devices…
+</section>
+<section data-field="body" class="e-content">
+<section name="f984" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="d0f3" id="d0f3" class="graf graf--h3 graf--leading graf--title">Mobile Application Taxonomy</h3><figure name="bc38" id="bc38" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*aJxiHcOEf3RG7Lz-g4FHfw.png" data-width="1740" data-height="516" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*aJxiHcOEf3RG7Lz-g4FHfw.png"></figure><p name="3c21" id="3c21" class="graf graf--p graf-after--figure">This article discusses the definition of mobile applications or apps, which are computer programs designed to run on mobile devices. Android and iOS are the dominant mobile operating systems, comprising over 99% of the mobile OS market share. Mobile browsing and apps have become the most widespread kind of Internet-capable apps, surpassing desktop usage for the first time. Apps can run directly on a platform, on top of a mobile browser, or a combination of the two. The article outlines the characteristics and differences of each variation in mobile app taxonomy.</p><h3 name="8922" id="8922" class="graf graf--h3 graf-after--p">Native Apps</h3><p name="32a0" id="32a0" class="graf graf--p graf-after--h3">Native apps are software applications that are developed for a specific mobile operating system (OS) using the OS’s development kit. These apps are designed to provide the fastest performance and the highest degree of reliability, and they have the ability to access almost every component of the device, such as the camera and sensors.</p><p name="0c4a" id="0c4a" class="graf graf--p graf-after--p">Android and iOS have their respective development kits — Android SDK and iOS SDK, which are used to develop native apps. The Android platform also provides an additional development kit, the Android NDK, which is used for developing binary libraries that can access lower level APIs.</p><p name="7c1b" id="7c1b" class="graf graf--p graf-after--p">The main drawback of native apps is that they target only one specific platform. To build the same app for both Android and iOS, developers need to maintain two separate code bases or use development tools to port a single code base to both platforms.</p><p name="9aa3" id="9aa3" class="graf graf--p graf-after--p">However, some development frameworks like <strong class="markup--strong markup--p-strong">Xamarin</strong>, <strong class="markup--strong markup--p-strong">Google Flutter</strong>, and <strong class="markup--strong markup--p-strong">React Native</strong> allow developers to compile a single code base for both platforms, and offer performance equivalent to native apps. These apps can use all device capabilities, including GPS, camera, and notification systems, making them a great option for cross-platform development.</p><p name="a004" id="a004" class="graf graf--p graf-after--p">In summary, native apps offer the best performance and reliability, and developers can use the platform-specific development kits for their development. Cross-platform development frameworks like Xamarin, Google Flutter, and React Native offer the advantage of a single code base for multiple platforms, while still retaining the benefits of native apps.</p><h3 name="0423" id="0423" class="graf graf--h3 graf-after--p">Web Apps</h3><p name="8220" id="8220" class="graf graf--p graf-after--h3">Mobile web apps, also known as web apps, are websites designed to emulate native apps in terms of their appearance and functionality. They are built using HTML5 and run on a device’s browser, providing users with a way to access an app-like experience without needing to download or install anything. Web apps have limited access to device components and typically lack the performance of native apps. However, they offer the benefit of reduced development costs since they can target multiple platforms with a single code base and can be updated easily without going through app stores.</p><h3 name="d576" id="d576" class="graf graf--h3 graf-after--p">Hybrid Apps</h3><p name="1d8d" id="1d8d" class="graf graf--p graf-after--h3">Hybrid apps combine elements of both native and web apps by executing like a native app but relying on web technologies. This means that a portion of the app runs in an embedded web browser. While hybrid apps inherit the advantages and disadvantages of both native and web apps, a web-to-native abstraction layer enables access to device capabilities not accessible to a pure web app. Using a framework such as Apache Cordova or Ionic, one code base can result in multiple apps that target different platforms, with a UI closely resembling that of the original platform. Popular frameworks for developing hybrid apps include Apache Cordova, Framework 7, Ionic, jQuery Mobile, Native Script, Onsen UI, and Sencha Touch.</p><h3 name="e6b7" id="e6b7" class="graf graf--h3 graf-after--p">Progressive Web App</h3><p name="99aa" id="99aa" class="graf graf--p graf-after--h3">Progressive Web Apps (PWA) offer several advantages over traditional web apps, including offline functionality and access to mobile device hardware traditionally only available to native mobile apps. PWAs utilize different open standards of the web to provide a rich mobile experience, and a Web App Manifest can be used to configure the app’s behavior after installation. While PWAs are supported by Android and iOS, not all hardware features are yet available on both platforms. Despite some limitations, PWAs provide an excellent alternative to native mobile apps, with increased functionality and reduced development and maintenance costs.</p><h3 name="6697" id="6697" class="graf graf--h3 graf-after--p">Which one to choose?</h3><h4 name="10cd" id="10cd" class="graf graf--h4 graf-after--h3">Native Apps</h4><p name="a5ca" id="a5ca" class="graf graf--p graf-after--h4"><strong class="markup--strong markup--p-strong">Advantages</strong>:</p><ul class="postList"><li name="05fa" id="05fa" class="graf graf--li graf-after--p">Provides a high-performance user experience with smooth animations and faster response time.</li><li name="fc49" id="fc49" class="graf graf--li graf-after--li">Can access all the hardware features of the device and can work offline.</li><li name="bd17" id="bd17" class="graf graf--li graf-after--li">Available in app stores, making them easily discoverable for users.</li><li name="69bb" id="69bb" class="graf graf--li graf-after--li">Offers a consistent user interface across all devices.</li></ul><p name="e6d8" id="e6d8" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">Disadvantages</strong>:</p><ul class="postList"><li name="3531" id="3531" class="graf graf--li graf-after--p">Development is platform-specific, requiring separate development teams and code bases for different platforms.</li><li name="751e" id="751e" class="graf graf--li graf-after--li">Higher development and maintenance costs compared to other app types.</li><li name="f946" id="f946" class="graf graf--li graf-after--li">App store approval can be a lengthy process and requires adhering to strict guidelines.</li></ul><h4 name="50b0" id="50b0" class="graf graf--h4 graf-after--li">Hybrid Apps</h4><p name="8c32" id="8c32" class="graf graf--p graf-after--h4"><strong class="markup--strong markup--p-strong">Advantages</strong>:</p><ul class="postList"><li name="b6a6" id="b6a6" class="graf graf--li graf-after--p">Provides access to device hardware features.</li><li name="cd3f" id="cd3f" class="graf graf--li graf-after--li">Can be developed using web technologies, allowing for cross-platform development.</li><li name="46ce" id="46ce" class="graf graf--li graf-after--li">Can be distributed through app stores or as web apps.</li><li name="c922" id="c922" class="graf graf--li graf-after--li">Provides a faster development cycle than native apps.</li><li name="22c3" id="22c3" class="graf graf--li graf-after--li">Offers a consistent user interface across all devices.</li></ul><p name="1712" id="1712" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">Disadvantages</strong>:</p><ul class="postList"><li name="15e1" id="15e1" class="graf graf--li graf-after--p">May not be able to provide the same level of performance as native apps.</li><li name="5caa" id="5caa" class="graf graf--li graf-after--li">May require additional plugins to access certain device features, leading to increased complexity.</li><li name="645b" id="645b" class="graf graf--li graf-after--li">App store approval can be a lengthy process and requires adhering to strict guidelines.</li></ul><h4 name="313e" id="313e" class="graf graf--h4 graf-after--li">Web Apps</h4><p name="f670" id="f670" class="graf graf--p graf-after--h4"><strong class="markup--strong markup--p-strong">Advantages</strong>:</p><ul class="postList"><li name="ffc4" id="ffc4" class="graf graf--li graf-after--p">Can be accessed through any device with a web browser.</li><li name="3aa0" id="3aa0" class="graf graf--li graf-after--li">Can be easily updated and maintained.</li><li name="a59b" id="a59b" class="graf graf--li graf-after--li">Cost-effective as they require only a single code base for all platforms.</li><li name="46d8" id="46d8" class="graf graf--li graf-after--li">No need to go through app store approval process.</li></ul><p name="240e" id="240e" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">Disadvantages</strong>:</p><ul class="postList"><li name="65f7" id="65f7" class="graf graf--li graf-after--p">Limited access to device hardware features and offline capability.</li><li name="80c7" id="80c7" class="graf graf--li graf-after--li">Cannot be easily discovered by users as they don’t appear in app stores.</li><li name="4043" id="4043" class="graf graf--li graf-after--li">May not provide the same level of performance as native apps.</li></ul><h4 name="6c58" id="6c58" class="graf graf--h4 graf-after--li">Progressive Web Apps</h4><p name="569b" id="569b" class="graf graf--p graf-after--h4"><strong class="markup--strong markup--p-strong">Advantages</strong>:</p><ul class="postList"><li name="e432" id="e432" class="graf graf--li graf-after--p">Provides access to device hardware features.</li><li name="4395" id="4395" class="graf graf--li graf-after--li">Can work offline and can be easily added to the home screen.</li><li name="3bcd" id="3bcd" class="graf graf--li graf-after--li">Offers a consistent user interface across all devices.</li><li name="c097" id="c097" class="graf graf--li graf-after--li">Does not require app store approval process.</li><li name="727c" id="727c" class="graf graf--li graf-after--li">Provides a faster development cycle than native apps.</li></ul><p name="a849" id="a849" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">Disadvantages</strong>:</p><ul class="postList"><li name="1ed9" id="1ed9" class="graf graf--li graf-after--p">Some device features may not yet be available.</li><li name="ae2a" id="ae2a" class="graf graf--li graf-after--li">Limited access to native device APIs compared to native apps.</li><li name="e75d" id="e75d" class="graf graf--li graf-after--li">May not provide the same level of performance as native apps</li></ul><p name="8d7b" id="8d7b" class="graf graf--p graf-after--li">Choosing the right app type depends on the specific needs of the project. Native apps are best suited for apps that require high performance and extensive access to device features, while web apps and PWAs are better suited for projects that prioritise cost-effectiveness and accessibility across platforms. Hybrid apps can be a good choice for projects that require access to device hardware features and a faster development cycle, while still maintaining a consistent user interface across devices.</p><p name="6466" id="6466" class="graf graf--p graf-after--p graf--trailing"><strong class="markup--strong markup--p-strong">Thanks for reading! </strong>✌️</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@iamankurjain" class="p-author h-card">Ankur JAIN</a> on <a href="https://medium.com/p/65b4b9e9e5a7"><time class="dt-published" datetime="2023-05-16T08:10:51.161Z">May 16, 2023</time></a>.</p><p><a href="https://medium.com/@iamankurjain/mobile-application-taxonomy-65b4b9e9e5a7" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on August 2, 2025.</p></footer></article></body></html>

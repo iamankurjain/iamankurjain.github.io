@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Data Structure: Linked List in Swift 4"
+date: 2018-09-21
+categories: [iOS, swift]
+tags: [programming, swift, iOS]
+---
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Data Structure: Linked List in Swift 4</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Data Structure: Linked List in Swift 4</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Motive
+</section>
+<section data-field="body" class="e-content">
+<section name="dcea" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="27ee" id="27ee" class="graf graf--h3 graf--leading graf--title">Data Structure: Linked List in Swift 4</h3><figure name="ad1b" id="ad1b" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*NJbtzTOxZtGUUznghhejdg.jpeg" data-width="1073" data-height="355" src="https://cdn-images-1.medium.com/max/800/1*NJbtzTOxZtGUUznghhejdg.jpeg"><figcaption class="imageCaption">Linked List</figcaption></figure><h3 name="b3dc" id="b3dc" class="graf graf--h3 graf-after--figure"><strong class="markup--strong markup--h3-strong">Motive</strong></h3><p name="6789" id="6789" class="graf graf--p graf-after--h3">This post is all about learning linked list implementation in Swift. This post is strictly for those who are familiar with Swift and Linked list in general. So let’s get some hands-on it.</p><h3 name="b997" id="b997" class="graf graf--h3 graf-after--p">Creating Node</h3><figure name="39ca" id="39ca" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*e0UDZNAfJtHw77E2vtt7Nw.png" data-width="1722" data-height="1240" src="https://cdn-images-1.medium.com/max/800/1*e0UDZNAfJtHw77E2vtt7Nw.png"></figure><p name="6eb2" id="6eb2" class="graf graf--p graf-after--figure">We have created Node class with value and next variables. It has a printNode method which prints all the nodes linked with it. Let’s create the Linked List class.</p><h3 name="16c2" id="16c2" class="graf graf--h3 graf-after--p">Creating Linked List Class</h3><figure name="f309" id="f309" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*3i2rzDWgr9lPgvISjRr9Qg.png" data-width="1878" data-height="1576" src="https://cdn-images-1.medium.com/max/800/1*3i2rzDWgr9lPgvISjRr9Qg.png"></figure><p name="77d2" id="77d2" class="graf graf--p graf-after--figure">We have created Linked list class which has the parent node and the last node.</p><p name="535b" id="535b" class="graf graf--p graf-after--p">CreateLinkedListWithElements method creates the linked list with the given array.</p><h3 name="5b5f" id="5b5f" class="graf graf--h3 graf-after--p">Initializing Linked List</h3><figure name="31ff" id="31ff" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*UE4_-N_CQPcVP-D7mdSHkQ.png" data-width="1646" data-height="638" src="https://cdn-images-1.medium.com/max/800/1*UE4_-N_CQPcVP-D7mdSHkQ.png"></figure><p name="c180" id="c180" class="graf graf--p graf-after--figure">We have created linked list object with the integer array and then we print the linked list node by node</p><h3 name="11bd" id="11bd" class="graf graf--h3 graf-after--p">Appending Items in the linked list</h3><p name="40f8" id="40f8" class="graf graf--p graf-after--h3">Let’s write this method in the linked list class we created</p><figure name="743e" id="743e" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*dZqWQipBntgecngeeMIHdA.png" data-width="1494" data-height="364" src="https://cdn-images-1.medium.com/max/800/1*dZqWQipBntgecngeeMIHdA.png"></figure><p name="182e" id="182e" class="graf graf--p graf-after--figure">Now use this method to append the elements to the linked list we create just before.</p><figure name="4ddf" id="4ddf" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*ypsMqZgEu0hZ_SkET7dT4A.png" data-width="1784" data-height="838" src="https://cdn-images-1.medium.com/max/800/1*ypsMqZgEu0hZ_SkET7dT4A.png"></figure><p name="5964" id="5964" class="graf graf--p graf-after--figure">So appending elements to the linked list is quite easy.</p><h3 name="c547" id="c547" class="graf graf--h3 graf-after--p">Inserting a value in the Linked list</h3><p name="2377" id="2377" class="graf graf--p graf-after--h3">Write this method in the Linked list class.</p><figure name="131b" id="131b" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*YY6nJ0CzG4QJwj7ExtXgYA.png" data-width="1830" data-height="832" src="https://cdn-images-1.medium.com/max/800/1*YY6nJ0CzG4QJwj7ExtXgYA.png"></figure><p name="30d6" id="30d6" class="graf graf--p graf-after--figure">Now let’s see how we can use it</p><figure name="f1f1" id="f1f1" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*YOLF0iorPk2iDaGrM-AHAw.png" data-width="1308" data-height="900" src="https://cdn-images-1.medium.com/max/800/1*YOLF0iorPk2iDaGrM-AHAw.png"></figure><p name="817e" id="817e" class="graf graf--p graf-after--figure">As you can see, we inserted value 64 at index 8 in the list we created before. It inserts the value and prints the whole list node by node</p><h3 name="8221" id="8221" class="graf graf--h3 graf-after--p">Removing Node from Linked List</h3><p name="5ed2" id="5ed2" class="graf graf--p graf-after--h3">Let’s now remove a node from the linked list. Write this method in your Linked list class</p><figure name="2bdb" id="2bdb" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*H5AHXiCDNFVMGNsPegtVdw.png" data-width="1498" data-height="678" src="https://cdn-images-1.medium.com/max/800/1*H5AHXiCDNFVMGNsPegtVdw.png"></figure><p name="5179" id="5179" class="graf graf--p graf-after--figure">Now let’s see how we can use it.</p><figure name="f062" id="f062" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*gBv2DOwVViO34aREVTCoSA.png" data-width="1294" data-height="834" src="https://cdn-images-1.medium.com/max/800/1*gBv2DOwVViO34aREVTCoSA.png"></figure><p name="b7d0" id="b7d0" class="graf graf--p graf-after--figure">As you can see we have removed the node at position 2 which is 2 in this case and it prints all the node one by one after removal.</p><h3 name="8bbc" id="8bbc" class="graf graf--h3 graf-after--p">Get the last value</h3><figure name="e63d" id="e63d" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*7w-Ry9cPqi1XjeAYOWVh9g.png" data-width="998" data-height="194" src="https://cdn-images-1.medium.com/max/800/1*7w-Ry9cPqi1XjeAYOWVh9g.png"></figure><p name="6d8d" id="6d8d" class="graf graf--p graf-after--figure">Let’s use it to get the value</p><figure name="c946" id="c946" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*yyED_tucZu0R_ZkT4Y2PTw.png" data-width="2156" data-height="948" src="https://cdn-images-1.medium.com/max/800/1*yyED_tucZu0R_ZkT4Y2PTw.png"></figure><h3 name="8e96" id="8e96" class="graf graf--h3 graf-after--figure">Get Value at Index</h3><p name="ff42" id="ff42" class="graf graf--p graf-after--h3">Now let’s try to get the value at the given position.</p><p name="47b0" id="47b0" class="graf graf--p graf-after--p">Write this method in your linked list class</p><figure name="972a" id="972a" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*BPjK2Zw3aEt6kITcsOYLsw.png" data-width="1414" data-height="810" src="https://cdn-images-1.medium.com/max/800/1*BPjK2Zw3aEt6kITcsOYLsw.png"></figure><p name="4b33" id="4b33" class="graf graf--p graf-after--figure">Let’s use this method to get the value at position 3 from the linked list we created.</p><figure name="011f" id="011f" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*ygm2QD1RlGkVWZfHoSivKQ.png" data-width="1276" data-height="968" src="https://cdn-images-1.medium.com/max/800/1*ygm2QD1RlGkVWZfHoSivKQ.png"></figure><h3 name="f21e" id="f21e" class="graf graf--h3 graf-after--figure">Get the length of the linked list</h3><p name="cc5b" id="cc5b" class="graf graf--p graf-after--h3">Now let’s write the method in the Linked list class to get the length of the linked list.</p><figure name="06ac" id="06ac" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*AFoyGlb3H4LDBBSfbx0NKg.png" data-width="1288" data-height="782" src="https://cdn-images-1.medium.com/max/800/1*AFoyGlb3H4LDBBSfbx0NKg.png"></figure><p name="16aa" id="16aa" class="graf graf--p graf-after--figure">Let’s use it.</p><figure name="48ed" id="48ed" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*OheWR5FU4M-OGeI7xwRMJw.png" data-width="1542" data-height="888" src="https://cdn-images-1.medium.com/max/800/1*OheWR5FU4M-OGeI7xwRMJw.png"></figure><h3 name="3c69" id="3c69" class="graf graf--h3 graf-after--figure"><strong class="markup--strong markup--h3-strong">Conclusion</strong></h3><p name="2cf9" id="2cf9" class="graf graf--p graf-after--h3 graf--trailing">That’s all the basic operations with the Linked list. Now you can try and do some advanced stuff with it like reversing a linked list etc. Try to implement a doubly linked list too, where a node has two pointers next and previous and use it with all the methods like reversing. That’s it, keep watching for the next data Structure I come up with. Thanks!</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@iamankurjain" class="p-author h-card">Ankur JAIN</a> on <a href="https://medium.com/p/896f4d9be12"><time class="dt-published" datetime="2018-09-21T09:58:58.355Z">September 21, 2018</time></a>.</p><p><a href="https://medium.com/@iamankurjain/data-structure-linked-list-in-swift-4-896f4d9be12" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on August 2, 2025.</p></footer></article></body></html>

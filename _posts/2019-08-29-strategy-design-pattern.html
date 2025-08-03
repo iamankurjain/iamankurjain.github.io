@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Strategy Design Pattern"
+date: 2019-08-29
+categories: [iOS, swift]
+tags: [programming, swift, iOS]
+---
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Strategy Design Pattern</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Strategy Design Pattern</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Design patterns are typical solutions to common problems in software design. Each pattern is like a blueprint that you can customize to…
+</section>
+<section data-field="body" class="e-content">
+<section name="bccd" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="7525" id="7525" class="graf graf--h3 graf--leading graf--title">Design Patterns- Strategy</h3><p name="0b0d" id="0b0d" class="graf graf--p graf-after--h3"><strong class="markup--strong markup--p-strong">Design patterns</strong> are typical solutions to common problems in software design. Each pattern is like a blueprint that you can customize to solve a particular design problem in your code.</p><p name="2b80" id="2b80" class="graf graf--p graf-after--p">One of the biggest benefits of the design patterns is that it gives developers a common vocabulary to talk about software solutions. It does define a common language which can be understood by developers all over the world</p><figure name="55e0" id="55e0" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*LOjnzvTIHxGHcCnovWTJXA.jpeg" data-width="1166" data-height="656" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*LOjnzvTIHxGHcCnovWTJXA.jpeg"></figure><h3 name="c5a5" id="c5a5" class="graf graf--h3 graf-after--figure">Let’s Start!!!</h3><p name="7ed4" id="7ed4" class="graf graf--p graf-after--h3">There is a task to design a duck pond simulation game. The game can show a large variety of duck species swimming and making a quacking sound. The old and obvious approach would be Object-oriented, where we can design a class called <strong class="markup--strong markup--p-strong">Duck </strong>as superclass and all the other duck types will inherit from it. That solves our problem. isn’t it? Let&#39;s see through implementation.</p><figure name="28ef" id="28ef" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*l-E4py-Iu8rDcBNyqNzDRw.png" data-width="603" data-height="358" src="https://cdn-images-1.medium.com/max/800/1*l-E4py-Iu8rDcBNyqNzDRw.png"></figure><p name="b9fa" id="b9fa" class="graf graf--p graf-after--figure">Now a new requirement comes and that is — <strong class="markup--strong markup--p-strong">Ducks need to fly!!!</strong></p><p name="4fb5" id="4fb5" class="graf graf--p graf-after--p">How will we incorporate flying into our current design? As we are using inheritance here, we can directly put the flying method in the superclass(Duck) and all the other duck types can directly use it.</p><p name="7286" id="7286" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Just like this:</strong></p><figure name="8d15" id="8d15" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*uV-VgrqGq1GxH8l27YxUfA.png" data-width="652" data-height="391" src="https://cdn-images-1.medium.com/max/800/1*uV-VgrqGq1GxH8l27YxUfA.png"></figure><p name="3e33" id="3e33" class="graf graf--p graf-after--figure">So looks Great right? But there is a huge problem with this design, suppose there are rubber ducks which got introduced, which in real can’t fly. But with this design approach, they still will have fly() functionality as they will inherit the same superclass. This breaks the Interface Segregation principle also where our duck is forced to implement the flying functionality. The most we can do is override the fly method in rubber duck class and let it be empty. But suppose if we are maintaining a large number of species then it would become very difficult to maintain the code.</p><figure name="f747" id="f747" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*P0NmmBg7xA3qII_rqwbnQg.png" data-width="995" data-height="480" src="https://cdn-images-1.medium.com/max/800/1*P0NmmBg7xA3qII_rqwbnQg.png"></figure><p name="22fd" id="22fd" class="graf graf--p graf-after--figure"><strong class="markup--strong markup--p-strong">So what should we do to avoid this problem?</strong></p><p name="10b6" id="10b6" class="graf graf--p graf-after--p">First, we have to identify what is causing a problem? In this case, it’s a fly method as not all the ducks can fly, so the solution is to separate it out from the Duck class and encapsulate in another data structure and then use it. We should make sure that all other functionality remains the same as they are already well structured and working perfectly fine.</p><p name="fa63" id="fa63" class="graf graf--p graf-after--p">We know that fly() and quack() are the parts of the duck class that vary across ducks.</p><p name="2dba" id="2dba" class="graf graf--p graf-after--p">To Separate these behaviors from the duck class, we will pull out both methods from the Duck Class and create a new set of classes to represent each behavior.</p><figure name="1c34" id="1c34" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*29lJ4KrgnL89-Im_mlLNBg.png" data-width="1091" data-height="486" src="https://cdn-images-1.medium.com/max/800/1*29lJ4KrgnL89-Im_mlLNBg.png"></figure><p name="80d3" id="80d3" class="graf graf--p graf-after--figure">This makes it reusable too. We will have classes which conform or implement these behaviors and can be used with the duck class. So let’s see how we can implement them. See the below diagram to understand.</p><figure name="d730" id="d730" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*rZEW8YAFY5nicqYUHBDhiQ.png" data-width="1798" data-height="650" src="https://cdn-images-1.medium.com/max/800/1*rZEW8YAFY5nicqYUHBDhiQ.png"></figure><h4 name="ccca" id="ccca" class="graf graf--h4 graf-after--figure"><strong class="markup--strong markup--h4-strong">With these type of behaviors, other types of object (except duck object) can also use these behaviors as these are not hidden in Just one Duck class, this makes the reusability very high.</strong></h4><p name="1586" id="1586" class="graf graf--p graf-after--h4">And even we can add or modify behaviors without even touching the Duck classes.</p><p name="19b4" id="19b4" class="graf graf--p graf-after--p">Now let&#39;s implement it using our Code in Swift.</p><h4 name="8e91" id="8e91" class="graf graf--h4 graf-after--p">Let’s Create the behaviors first</h4><figure name="ffa8" id="ffa8" class="graf graf--figure graf-after--h4"><img class="graf-image" data-image-id="1*i2o8Yn0bubxVhyiJ0lddXg.png" data-width="2120" data-height="464" src="https://cdn-images-1.medium.com/max/800/1*i2o8Yn0bubxVhyiJ0lddXg.png"></figure><p name="6ead" id="6ead" class="graf graf--p graf-after--figure">Now we have behaviors set up, let create classes which implements these behaviors. (These are called <strong class="markup--strong markup--p-strong">Strategies</strong> too)</p><p name="bd7e" id="bd7e" class="graf graf--p graf-after--p">For flying-</p><figure name="de6f" id="de6f" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*_bbzDkgFV-H1w8iu0aF7Ng.png" data-width="1824" data-height="576" src="https://cdn-images-1.medium.com/max/800/1*_bbzDkgFV-H1w8iu0aF7Ng.png"></figure><p name="78b3" id="78b3" class="graf graf--p graf-after--figure">For Quacking -</p><figure name="e6a0" id="e6a0" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*c6_psmjId9YB59i3QvmCmA.png" data-width="2158" data-height="866" src="https://cdn-images-1.medium.com/max/800/1*c6_psmjId9YB59i3QvmCmA.png"></figure><p name="92ba" id="92ba" class="graf graf--p graf-after--figure">Now that we have all the required protocols and classes set up, let’s create the duck classes. Let’s create the superclass first.</p><figure name="70f6" id="70f6" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*9EOzOqDdDolhPKocym7TiQ.png" data-width="1956" data-height="824" src="https://cdn-images-1.medium.com/max/800/1*9EOzOqDdDolhPKocym7TiQ.png"></figure><p name="7752" id="7752" class="graf graf--p graf-after--figure">This duck class has fly and quack behaviors which can be initialized by respecting duck classes like this below.</p><figure name="e77b" id="e77b" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*9rTo2LdvDgM-OEONgcMOvw.png" data-width="1822" data-height="1596" src="https://cdn-images-1.medium.com/max/800/1*9rTo2LdvDgM-OEONgcMOvw.png"></figure><p name="0b45" id="0b45" class="graf graf--p graf-after--figure">How to use them?. Let’s see below…</p><figure name="d553" id="d553" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*MRARpmMxv_YGrn5hE46RFA.png" data-width="1606" data-height="252" src="https://cdn-images-1.medium.com/max/800/1*MRARpmMxv_YGrn5hE46RFA.png"></figure><p name="2115" id="2115" class="graf graf--p graf-after--figure">What’s the output?…</p><p name="e1d6" id="e1d6" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">I can’t fly</strong></p><p name="fb9c" id="fb9c" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Squeaking…</strong></p><p name="66ab" id="66ab" class="graf graf--p graf-after--p">So here we are, have solved a problem using Strategy Pattern. I am leaving you with the definition of Strategy pattern in one sentence.</p><blockquote name="1cb1" id="1cb1" class="graf graf--blockquote graf-after--p">Strategy pattern is also known as <strong class="markup--strong markup--blockquote-strong">Policy Pattern</strong>. We define multiple algorithms and let client application pass the algorithm to be used as a parameter.</blockquote><p name="ac4b" id="ac4b" class="graf graf--p graf-after--blockquote">That’s it for this post, will see you in the next one!!</p><p name="ace1" id="ace1" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Thanks</strong>!!!!!</p><p name="f272" id="f272" class="graf graf--p graf-after--p graf--trailing"><strong class="markup--strong markup--p-strong">Reference: Head First Design Patterns (A Book By </strong><a href="https://www.amazon.in/Eric-Freeman/e/B001H6Q032/ref=dp_byline_cont_ebooks_1" data-href="https://www.amazon.in/Eric-Freeman/e/B001H6Q032/ref=dp_byline_cont_ebooks_1" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><strong class="markup--strong markup--p-strong">Eric Freeman</strong></a><strong class="markup--strong markup--p-strong">)</strong></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@iamankurjain" class="p-author h-card">Ankur JAIN</a> on <a href="https://medium.com/p/d5c3d42f485b"><time class="dt-published" datetime="2019-08-29T06:13:05.924Z">August 29, 2019</time></a>.</p><p><a href="https://medium.com/@iamankurjain/strategy-design-pattern-d5c3d42f485b" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on August 2, 2025.</p></footer></article></body></html>
