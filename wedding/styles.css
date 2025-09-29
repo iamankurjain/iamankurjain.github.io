@@ -80,12 +80,6 @@ nav a:hover {
 }
 
 /* Gallery */
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
 .gallery img {
   width: 100%;
   border-radius: 8px;
@@ -232,5 +226,149 @@ footer a {
     height: 450px;
     margin: auto;
     display: block;
+  }
+}
+
+/* --- Video Carousel --- */
+.video-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+}
+
+.carousel-item {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-item iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Carousel Controls */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(233, 30, 99, 0.8); /* pink wedding theme */
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.carousel-control:hover {
+  background: rgba(233, 30, 99, 1);
+}
+
+.carousel-control.prev {
+  left: 10px;
+}
+
+.carousel-control.next {
+  right: 10px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  .carousel-item iframe {
+    height: 300px;
+  }
+}
+
+@media (min-width: 900px) {
+  .carousel-item iframe {
+    height: 450px;
+  }
+}
+
+/* --- Photo Carousel --- */
+.photo-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.photo-carousel .carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+}
+
+.photo-carousel .carousel-item {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.photo-carousel img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Carousel Controls — reuse same style as video carousel */
+.photo-carousel .carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(233, 30, 99, 0.8);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.photo-carousel .carousel-control:hover {
+  background: rgba(233, 30, 99, 1);
+}
+
+.photo-carousel .carousel-control.prev {
+  left: 10px;
+}
+
+.photo-carousel .carousel-control.next {
+  right: 10px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  .photo-carousel img {
+    max-height: 400px;
+  }
+}
+
+@media (min-width: 900px) {
+  .photo-carousel img {
+    max-height: 500px;
   }
 }

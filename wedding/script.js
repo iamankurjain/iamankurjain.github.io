@@ -43,3 +43,61 @@ function updateConfetti() {
 }
 
 setInterval(drawConfetti, 20);
+
+// Video Carousel Logic
+(function () {
+  const track = document.querySelector(".carousel-track");
+  const prevButton = document.querySelector(".carousel-control.prev");
+  const nextButton = document.querySelector(".carousel-control.next");
+  const items = Array.from(track.children);
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const slideWidth = items[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+  }
+
+  prevButton.addEventListener("click", () => {
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+    updateCarousel();
+  });
+
+  nextButton.addEventListener("click", () => {
+    currentIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+    updateCarousel();
+  });
+
+  window.addEventListener("resize", updateCarousel);
+
+  // Initialize carousel
+  updateCarousel();
+})();
+
+// Photo Carousel Logic
+(function () {
+  const photoTrack = document.querySelector(".photo-carousel .carousel-track");
+  const photoPrevButton = document.querySelector(".photo-carousel .carousel-control.prev");
+  const photoNextButton = document.querySelector(".photo-carousel .carousel-control.next");
+  const photoItems = Array.from(photoTrack.children);
+  let photoIndex = 0;
+
+  function updatePhotoCarousel() {
+    const slideWidth = photoItems[0].getBoundingClientRect().width;
+    photoTrack.style.transform = `translateX(-${slideWidth * photoIndex}px)`;
+  }
+
+  photoPrevButton.addEventListener("click", () => {
+    photoIndex = photoIndex > 0 ? photoIndex - 1 : photoItems.length - 1;
+    updatePhotoCarousel();
+  });
+
+  photoNextButton.addEventListener("click", () => {
+    photoIndex = photoIndex < photoItems.length - 1 ? photoIndex + 1 : 0;
+    updatePhotoCarousel();
+  });
+
+  window.addEventListener("resize", updatePhotoCarousel);
+
+  // Initialize carousel
+  updatePhotoCarousel();
+})();
