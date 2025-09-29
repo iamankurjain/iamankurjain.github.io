@@ -60,6 +60,7 @@ nav a:hover {
 
 .hero h1 {
   font-size: 2rem;
+  margin-top: 6rem; /* Added top margin */
 }
 
 .hero p {
