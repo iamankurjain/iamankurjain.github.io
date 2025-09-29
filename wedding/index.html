@@ -21,6 +21,7 @@
         z-index: 1000;
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       nav a {
@@ -28,6 +29,8 @@
         text-decoration: none;
         color: #333;
         font-weight: bold;
+        flex: 1 1 auto;
+        text-align: center;
       }
       nav a:hover {
         color: #e91e63;
@@ -39,7 +42,7 @@
       .hero {
         background: linear-gradient(135deg, #ffeb3b, #e91e63, #4caf50);
         color: white;
-        height: 100vh;
+        min-height: 100svh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -47,14 +50,16 @@
         animation: fadeIn 2s ease-in-out;
         position: relative;
         overflow: hidden;
+        padding: 20px;
+        text-align: center;
       }
       .hero h1 {
         font-family: "Playfair Display", serif;
-        font-size: 3em;
+        font-size: clamp(2em, 6vw, 3.5em);
         margin: 0;
       }
       .hero p {
-        font-size: 1.5em;
+        font-size: clamp(1em, 4vw, 1.5em);
         margin-top: 10px;
       }
       @keyframes fadeIn {
@@ -82,10 +87,20 @@
       .gallery img:hover {
         transform: scale(1.05);
       }
-      .video-container iframe {
-        width: 80%;
-        height: 450px;
-        border: none;
+      .responsive-iframe {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+      }
+      .responsive-iframe iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        border-radius: 8px;
       }
       .timeline {
         max-width: 800px;
@@ -105,16 +120,80 @@
         background: #333;
         color: white;
         padding: 20px;
+        text-align: center;
       }
       footer a {
         color: #ffeb3b;
         margin: 0 10px;
         text-decoration: none;
       }
-      iframe.pdf-viewer {
-        width: 80%;
-        height: 600px;
+
+      /* Carousel */
+      .video-carousel {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        width: 100%;
+      }
+      .carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px;
+        gap: 15px;
+      }
+      .carousel-item {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 500px;
+      }
+      .carousel-item iframe {
+        width: 100%;
+        aspect-ratio: 16/9;
         border: none;
+        border-radius: 8px;
+      }
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        font-size: 2em;
+        cursor: pointer;
+        z-index: 10;
+        padding: 5px 10px;
+      }
+      .carousel-btn.prev {
+        left: 10px;
+      }
+      .carousel-btn.next {
+        right: 10px;
+      }
+      .carousel-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Mobile Tweaks */
+      @media (max-width: 768px) {
+        section {
+          padding: 40px 15px;
+        }
+        .timeline {
+          padding-left: 10px;
+        }
+        .gallery {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+      }
+      @media (max-width: 480px) {
+        .gallery {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -145,16 +224,23 @@
 
     <section id="videos">
       <h2>Wedding Videos</h2>
-      <div class="video-container">
-        <!-- Placeholder, update with your Google Drive/Vimeo link -->
-        <iframe
-          src="https://drive.google.com/file/d/1MSWAkwEZnIsNm5s1a2_-RoqPH2QkaWU1/preview"
-          allowfullscreen
-        ></iframe>
-        <iframe
-          src="https://drive.google.com/file/d/1OPN69lH82cjYmfXHGpKQ4DYoekX-2-Lh/preview"
-          allowfullscreen
-        ></iframe>
+      <div class="video-carousel">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="carousel-track">
+          <div class="carousel-item">
+            <iframe
+              src="https://drive.google.com/file/d/1MSWAkwEZnIsNm5s1a2_-RoqPH2QkaWU1/preview"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="carousel-item">
+            <iframe
+              src="https://drive.google.com/file/d/1OPN69lH82cjYmfXHGpKQ4DYoekX-2-Lh/preview"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
       </div>
     </section>
 
@@ -182,24 +268,24 @@
 
     <section id="wardrobe">
       <h2>Wardrobe Planner</h2>
-      <iframe
-        class="pdf-viewer"
-        src="https://drive.google.com/file/d/1f8fwC-d6ZuCYUTvfoXrXzo5ZZJnOF_Gd/preview"
-      ></iframe>
+      <div class="responsive-iframe">
+        <iframe
+          src="https://drive.google.com/file/d/1f8fwC-d6ZuCYUTvfoXrXzo5ZZJnOF_Gd/preview"
+        ></iframe>
+      </div>
     </section>
 
     <section id="venue">
       <h2>Venue Details</h2>
       <p>Wedding Venue: Gunjan Resort, Sirsaganj, Uttar Pradesh - 283151.</p>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3552.89056672475!2d78.6983027!3d27.065202000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3975caf442e5326d%3A0x2e97b93520d2fd3b!2sGunjan%20Resort!5e0!3m2!1sen!2sin!4v1758995267310!5m2!1sen!2sin"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+      <div class="responsive-iframe">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3552.89056672475!2d78.6983027!3d27.065202000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3975caf442e5326d%3A0x2e97b93520d2fd3b!2sGunjan%20Resort!5e0!3m2!1sen!2sin!4v1758995267310!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
     </section>
 
     <footer>
