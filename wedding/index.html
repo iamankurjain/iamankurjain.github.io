@@ -9,10 +9,12 @@
       rel="stylesheet"
     />
     <style>
+      /* --- Base Styles (Desktop/Tablet) --- */
       body {
         margin: 0;
         font-family: "Roboto", sans-serif;
         scroll-behavior: smooth;
+        line-height: 1.6; /* Improved readability */
       }
       nav {
         position: sticky;
@@ -21,7 +23,6 @@
         z-index: 1000;
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       nav a {
@@ -29,8 +30,7 @@
         text-decoration: none;
         color: #333;
         font-weight: bold;
-        flex: 1 1 auto;
-        text-align: center;
+        transition: color 0.3s; /* Smooth hover */
       }
       nav a:hover {
         color: #e91e63;
@@ -42,7 +42,7 @@
       .hero {
         background: linear-gradient(135deg, #ffeb3b, #e91e63, #4caf50);
         color: white;
-        min-height: 100svh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -50,16 +50,16 @@
         animation: fadeIn 2s ease-in-out;
         position: relative;
         overflow: hidden;
-        padding: 20px;
-        text-align: center;
+        /* 👍 ADDED TOP PADDING FOR DESKTOP/DEFAULT VIEW */
+        padding-top: 80px;
       }
       .hero h1 {
         font-family: "Playfair Display", serif;
-        font-size: clamp(2em, 6vw, 3.5em);
+        font-size: 4em; /* Increased size for impact */
         margin: 0;
       }
       .hero p {
-        font-size: clamp(1em, 4vw, 1.5em);
+        font-size: 1.8em; /* Increased size for impact */
         margin-top: 10px;
       }
       @keyframes fadeIn {
@@ -74,8 +74,13 @@
       }
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(250px, 1fr)
+        ); /* Larger min size for desktop */
         gap: 15px;
+        max-width: 1200px;
+        margin: auto;
       }
       .gallery img {
         width: 100%;
@@ -87,21 +92,7 @@
       .gallery img:hover {
         transform: scale(1.05);
       }
-      .responsive-iframe {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        height: 0;
-      }
-      .responsive-iframe iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-        border-radius: 8px;
-      }
+      /* Changed from .video-container iframe to use the carousel styles */
       .timeline {
         max-width: 800px;
         margin: auto;
@@ -120,41 +111,72 @@
         background: #333;
         color: white;
         padding: 20px;
-        text-align: center;
       }
       footer a {
         color: #ffeb3b;
         margin: 0 10px;
         text-decoration: none;
+        transition: color 0.3s;
+      }
+      footer a:hover {
+        color: white;
       }
 
-      /* Carousel */
+      /* Use max-width for responsive iframes */
+      iframe.pdf-viewer,
+      #venue iframe {
+        width: 95%; /* Make full width of parent */
+        max-width: 800px; /* Restrict max size on desktop */
+        height: 600px;
+        border: none;
+        margin: 20px auto;
+        display: block;
+      }
+
+      /* --- Video Carousel Styles --- */
       .video-carousel {
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
         width: 100%;
+        max-width: 1000px; /* Max width for carousel container */
+        margin: auto;
       }
+
       .carousel-track {
         display: flex;
-        overflow-x: auto;
+        overflow-x: scroll; /* Allow horizontal scrolling */
         scroll-behavior: smooth;
-        padding: 20px;
-        gap: 15px;
+        padding: 20px 0;
+        width: 100%;
+        -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
       }
+
+      /* Hide scrollbar for a cleaner look */
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+      .carousel-track {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
       .carousel-item {
-        flex: 0 0 auto;
-        width: 100%;
-        max-width: 500px;
+        flex: 0 0 500px; /* Fixed width on desktop */
+        margin: 0 10px;
+        /* Ensures the iframe is centered in the item if it's smaller */
+        display: flex;
+        justify-content: center;
       }
+
       .carousel-item iframe {
-        width: 100%;
-        aspect-ratio: 16/9;
+        width: 100%; /* Iframe takes full width of item */
+        height: 300px;
         border: none;
         border-radius: 8px;
       }
+
       .carousel-btn {
         position: absolute;
         top: 50%;
@@ -166,33 +188,93 @@
         cursor: pointer;
         z-index: 10;
         padding: 5px 10px;
+        border-radius: 5px;
+        transition: background 0.3s;
       }
+
       .carousel-btn.prev {
-        left: 10px;
+        left: 0px; /* Position closer to the edge */
       }
+
       .carousel-btn.next {
-        right: 10px;
+        right: 0px; /* Position closer to the edge */
       }
+
       .carousel-btn:hover {
         background: rgba(0, 0, 0, 0.8);
       }
 
-      /* Mobile Tweaks */
+      /* --- Mobile Responsiveness (Max-width 768px) --- */
       @media (max-width: 768px) {
+        /* General adjustments */
         section {
-          padding: 40px 15px;
+          padding: 40px 10px; /* Reduce vertical padding */
         }
-        .timeline {
-          padding-left: 10px;
+
+        /* Navigation adjustments */
+        nav {
+          overflow-x: auto; /* Allow nav items to scroll horizontally */
+          justify-content: flex-start; /* Align to the left */
         }
+        nav a {
+          padding: 10px 15px; /* Smaller padding for links */
+          flex-shrink: 0; /* Prevent links from shrinking */
+        }
+
+        /* Hero section adjustments */
+        .hero {
+          /* 👍 ADJUSTED TOP PADDING FOR MOBILE */
+          padding-top: 50px;
+        }
+        .hero h1 {
+          font-size: 2.5em; /* Smaller font for mobile */
+        }
+        .hero p {
+          font-size: 1.2em;
+        }
+
+        /* Gallery adjustments */
         .gallery {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr; /* Single column layout for small screens */
           gap: 10px;
         }
-      }
-      @media (max-width: 480px) {
-        .gallery {
-          grid-template-columns: 1fr;
+        .gallery img:hover {
+          transform: none; /* Remove hover effect on touch devices */
+        }
+
+        /* Timeline adjustments */
+        .timeline {
+          padding: 0 10px;
+        }
+
+        /* Video Carousel adjustments */
+        .video-carousel {
+          margin: 0 auto;
+        }
+        .carousel-item {
+          flex: 0 0 90vw; /* Take 90% of the viewport width */
+          margin: 0 5px;
+        }
+        .carousel-item iframe {
+          height: 200px; /* Smaller height for mobile videos */
+        }
+
+        /* Hide buttons when on a tiny screen, rely on swipe/scroll */
+        .carousel-btn {
+          display: none;
+        }
+
+        /* PDF and Map iframe adjustments */
+        iframe.pdf-viewer,
+        #venue iframe {
+          width: 100%; /* Full width on mobile */
+          height: 400px; /* Smaller height */
+        }
+
+        /* Footer adjustments */
+        footer a {
+          display: block; /* Stack links vertically */
+          margin: 5px 0;
         }
       }
     </style>
@@ -225,7 +307,7 @@
     <section id="videos">
       <h2>Wedding Videos</h2>
       <div class="video-carousel">
-        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn prev">❮</button>
         <div class="carousel-track">
           <div class="carousel-item">
             <iframe
@@ -240,7 +322,7 @@
             ></iframe>
           </div>
         </div>
-        <button class="carousel-btn next">&#10095;</button>
+        <button class="carousel-btn next">❯</button>
       </div>
     </section>
 
@@ -268,24 +350,24 @@
 
     <section id="wardrobe">
       <h2>Wardrobe Planner</h2>
-      <div class="responsive-iframe">
-        <iframe
-          src="https://drive.google.com/file/d/1f8fwC-d6ZuCYUTvfoXrXzo5ZZJnOF_Gd/preview"
-        ></iframe>
-      </div>
+      <iframe
+        class="pdf-viewer"
+        src="https://drive.google.com/file/d/1f8fwC-d6ZuCYUTvfoXrXzo5ZZJnOF_Gd/preview"
+      ></iframe>
     </section>
 
     <section id="venue">
       <h2>Venue Details</h2>
       <p>Wedding Venue: Gunjan Resort, Sirsaganj, Uttar Pradesh - 283151.</p>
-      <div class="responsive-iframe">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3552.89056672475!2d78.6983027!3d27.065202000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3975caf442e5326d%3A0x2e97b93520d2fd3b!2sGunjan%20Resort!5e0!3m2!1sen!2sin!4v1758995267310!5m2!1sen!2sin"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3552.89056672475!2d78.6983027!3d27.065202000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3975caf442e5326d%3A0x2e97b93520d2fd3b!2sGunjan%20Resort!5e0!3m2!1sen!2sin!4v1758995267310!5m2!1sen!2sin"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </section>
 
     <footer>
@@ -297,10 +379,16 @@
     </footer>
 
     <script>
-      // Confetti animation for hero section
+      // Confetti animation for hero section (No changes needed for responsiveness here)
       const confettiCanvas = document.getElementById("confetti");
-      confettiCanvas.width = window.innerWidth;
-      confettiCanvas.height = window.innerHeight;
+      // Use window.innerWidth/Height dynamically
+      const setCanvasSize = () => {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+      };
+      setCanvasSize();
+      window.addEventListener("resize", setCanvasSize); // Re-size on viewport change
+
       const ctx = confettiCanvas.getContext("2d");
 
       const confetti = [];
@@ -342,6 +430,24 @@
       }
 
       setInterval(drawConfetti, 20);
+
+      // Carousel navigation script (Updated to use dynamic track reference)
+      const track = document.querySelector(".carousel-track");
+      const prevButton = document.querySelector(".carousel-btn.prev");
+      const nextButton = document.querySelector(".carousel-btn.next");
+
+      nextButton.addEventListener("click", () => {
+        // Scroll by the width of the first item (plus margin)
+        const itemWidth =
+          track.querySelector(".carousel-item").offsetWidth + 20;
+        track.scrollBy({ left: itemWidth, behavior: "smooth" });
+      });
+
+      prevButton.addEventListener("click", () => {
+        const itemWidth =
+          track.querySelector(".carousel-item").offsetWidth + 20;
+        track.scrollBy({ left: -itemWidth, behavior: "smooth" });
+      });
     </script>
   </body>
 </html>
